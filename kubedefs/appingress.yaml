@@ -1,0 +1,20 @@
+apiVersion: nwtoworking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vpro-ingress
+  annotations:
+    nginix.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: vprofile.egdevopskubedock.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vproapp-service
+            port:
+              number: 8080
+    
